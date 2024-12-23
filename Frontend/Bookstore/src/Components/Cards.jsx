@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Cards({items}) {
-  console.log(items);
+/*   console.log(items); */
   
   return (
    <>

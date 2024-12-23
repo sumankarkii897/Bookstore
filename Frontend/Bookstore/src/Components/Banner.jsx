@@ -19,7 +19,7 @@ export default function Banner() {
 </span>
 </div>
 <div>
-    <button className='bg-pink-500 border rounded-lg px-3 py-3 cursor-pointer'>Secondary</button>
+    <button className='bg-pink-500 border rounded-lg px-3 py-3 cursor-pointer'>Get Started</button>
 </div>
 </div>
 </div>

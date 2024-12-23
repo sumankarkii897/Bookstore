@@ -1,8 +1,26 @@
-import React from 'react'
-import listData from "../data/list.json"
+import React, { useEffect, useState } from 'react'
 import Cards from './Cards'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { set } from 'react-hook-form'
 export default function CourseBody() {
+  const [book,setBook]=useState([])
+  useEffect(()=>{
+const getBook=async ()=>{
+  try {
+   let res=await axios.get("http://localhost:3001/api/book")
+  
+    
+    
+    console.log("Res Book",res.data);
+    setBook(res.data)
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+getBook()
+  },[])
   return (
     <>
   <div className='container '>
@@ -17,9 +35,9 @@ export default function CourseBody() {
         <div className='mt-4 grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-5  gap-1 md:gap-3'>
           {
 
-listData.map((items)=>{
+book.map((items)=>{
   return (
-    <Cards items={items} key={items.id}/>
+    <Cards items={items} key={items._id}/>
   )
 })
           }

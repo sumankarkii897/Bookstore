@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoSearch } from "react-icons/io5";
 import { FaRegMoon } from "react-icons/fa";
 import { IoMdMenu } from "react-icons/io";
 import { FaRegSun } from "react-icons/fa6";
 import Login from './Login';
-
+import { useAuth } from './Context/AuthProvider';
+import Logout from './Logout';
 export default function Navbar({ onMenuToggle }) {
+ 
+  const[authUser,setauthUser]=useAuth()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
  const[isThemeWhite,setIsThemeWhite]=useState(false)
   const[isSticky,setIsSticky]=useState(false)
@@ -81,7 +84,7 @@ const changeThemeDark=()=>{
               <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/about">About</Link></li>
             </ul>
-            <div className={`relative block ${isMenuOpen?"":""}`}>
+            <div className={`relative block`}>
               <input
                 type="text"
                 className="border md:pl-10 md:pr-10 md:py-2 rounded md:w-full w-28 dark:bg-slate-900 dark:text-white"
@@ -104,13 +107,21 @@ const changeThemeDark=()=>{
           </div>
 
           {/* Login Button */}
-        
-         <div >
+          {/* for login and logout */}
+        {
+authUser?<Logout/>:<div >
             <button onClick={()=>{document.getElementById("my_modal_3").showModal()}}className="bg-gray-600 text-white md:p-2 rounded-md cursor-pointer hover:bg-slate-800 duration-300 text-sm p-1">
               Login
             </button>
             <Login/>
           </div>
+        }
+         {/* <div >
+            <button onClick={()=>{document.getElementById("my_modal_3").showModal()}}className="bg-gray-600 text-white md:p-2 rounded-md cursor-pointer hover:bg-slate-800 duration-300 text-sm p-1">
+              Login
+            </button>
+            <Login/>
+          </div> */}
          
 
           {/* Hamburger Icon */}
